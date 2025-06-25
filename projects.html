@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | My Personal Portfolio</title>
+    <meta name="description" content="A collection of my best projects, showcasing my skills in web development and design.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A', // Deep Blue
+                        accent: '#3B82F6',   // Bright Blue
+                        secondary: '#4B5563', // Medium Gray (for text)
+                        neutral: {
+                          100: '#F3F4F6',
+                          800: '#1F2937',
+                          900: '#111827'
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    fontSize: {
+                        'h1': '2.5rem',
+                        'h2': '2rem',
+                        'h3': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    
+    <style type="text/tailwindcss">
+        @layer base {
+            html { @apply scroll-behavior-smooth; }
+            body { @apply bg-gray-50 text-neutral-900; }
+            h1, h2, h3, h4, h5, h6 { @apply font-serif font-bold; }
+            h1 { @apply text-h1; }
+            h2 { @apply text-h2; }
+            h3 { @apply text-h3; }
+        }
+        @layer components {
+            .btn { @apply font-sans font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2; }
+            .btn-primary { @apply bg-accent text-white hover:bg-blue-500 focus:ring-accent; }
+            .btn-secondary { @apply bg-transparent border border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary; }
+            
+            /* Project Card Styles */
+            .project-card {
+                @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out;
+            }
+            .project-card:hover {
+                @apply shadow-xl transform -translate-y-1;
+            }
+            .project-card .card-image-container {
+                @apply overflow-hidden;
+            }
+            .project-card:hover .card-image {
+                @apply scale-105;
+            }
+            .card-image {
+                @apply w-full h-48 object-cover transition-transform duration-300;
+            }
+            .card-content { @apply p-6; }
+            .card-title { @apply text-lg font-bold text-neutral-900 mb-2; }
+            .card-description { @apply text-sm text-secondary font-sans mb-4 h-10; } /* Set fixed height */
+            .card-footer { @apply flex justify-between items-center; }
+
+            /* Filter Tag Styles */
+            .filter-tag {
+                @apply px-4 py-2 rounded-full text-sm font-semibold cursor-pointer transition-colors duration-200;
+            }
+            .filter-tag.active {
+                @apply bg-accent text-white;
+            }
+            .filter-tag:not(.active) {
+                @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+            }
+            
+            /* Tech Tag from index.html */
+            .tag { @apply inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold font-serif text-primary">MyBrand</a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-accent font-bold">Projects</a>
+                <a href="blog.html" class="text-neutral-900 hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+
+            <!-- Mobile Nav Button -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
+            <nav class="flex flex-col items-center space-y-4 py-4">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-accent font-bold">Projects</a>
+                <a href="blog.html" class="text-neutral-900 hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold font-serif text-neutral-900">My Projects</h1>
+                    <p class="mt-4 text-lg md:text-xl text-secondary max-w-2xl mx-auto">Here is a selection of my recent work. Feel free to explore and see the code behind them.</p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-12">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="project-card" data-category="web">
+                        <a href="project-detail.html" class="block rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x400/1E3A8A/FFFFFF?text=Project+Alpha" alt="Project Alpha" class="w-full h-48 object-cover bg-gray-200" loading="lazy">
+                                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <span class="text-white text-lg font-bold">View Details</span>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-white">
+                                <h3 class="text-xl font-bold text-neutral-900">Project Alpha</h3>
+                                <p class="text-secondary mt-2">A corporate website redesign with a focus on performance and SEO.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Add more project cards with loading="lazy" ... -->
+                </div>
+                <!-- ... other cards with lazy loading ... -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Get in Touch</h4>
+                    <p class="text-gray-400">Feel free to reach out via email or find me on social media.</p>
+                    <a href="mailto:hello@mybrand.com" class="block mt-2 text-accent hover:underline">hello@mybrand.com</a>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Me</a></li>
+                        <li class="mt-2"><a href="projects.html" class="text-gray-400 hover:text-white">Projects</a></li>
+                        <li class="mt-2"><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li class="mt-2"><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Social Media -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500">
+                <p>&copy; 2024 MyBrand. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/preloader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white/80', 'backdrop-blur-sm', 'shadow-md');
+                } else {
+                    navbar.classList.remove('bg-white/80', 'backdrop-blur-sm', 'shadow-md');
+                }
+            });
+
+            // Project filter
+            const filterContainer = document.getElementById('filter-container');
+            const projectGrid = document.getElementById('project-grid');
+            const projects = Array.from(projectGrid.children);
+
+            filterContainer.addEventListener('click', (e) => {
+                if (e.target.matches('.filter-tag')) {
+                    // Update active button state
+                    filterContainer.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+
+                    const filter = e.target.dataset.filter;
+                    
+                    projects.forEach(project => {
+                        project.style.transition = 'opacity 0.5s ease';
+                        if (filter === 'all' || project.dataset.category === filter) {
+                            project.classList.remove('hidden');
+                        } else {
+                            project.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

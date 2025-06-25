@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Tailwind CSS | Blog</title>
+    <meta name="description" content="An in-depth guide to leveraging Tailwind CSS to build beautiful, custom designs without leaving your HTML.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A', // Deep Blue
+                        accent: '#3B82F6',   // Bright Blue
+                        secondary: '#4B5563', // Medium Gray (for text)
+                        'code-bg': '#1E293B', // Dark blue for code blocks
+                        'code-text': '#E2E8F0',// Light gray for code text
+                        neutral: {
+                          100: '#F3F4F6',
+                          800: '#1F2937',
+                          900: '#111827'
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    
+    <style type="text/tailwindcss">
+        @layer base {
+            html { @apply scroll-behavior-smooth; }
+            body { @apply bg-white text-neutral-900; }
+            h1, h2, h3 { @apply font-serif font-bold; }
+            /* Article-specific typography */
+            .article-content p { @apply mb-6 text-lg leading-relaxed; }
+            .article-content h2 { @apply text-2xl mt-12 mb-4; }
+            .article-content a { @apply text-accent underline hover:text-primary; }
+        }
+        @layer components {
+            .btn { @apply font-sans font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2; }
+            .btn-primary { @apply bg-accent text-white hover:bg-blue-500 focus:ring-accent; }
+
+            /* Code Block Style */
+            .code-block {
+                @apply bg-code-bg text-code-text font-mono text-sm rounded-lg p-4 overflow-x-auto relative;
+            }
+            .copy-button {
+                @apply absolute top-2 right-2 bg-gray-600 hover:bg-gray-500 text-white text-xs px-2 py-1 rounded;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold font-serif text-primary">MyBrand</a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-accent font-bold">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+
+            <!-- Mobile Nav Button -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
+            <nav class="flex flex-col items-center space-y-4 py-4">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-accent font-bold">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <div class="container mx-auto px-6 py-12">
+            <div class="max-w-3xl mx-auto">
+                
+                <!-- Back Link -->
+                <a href="blog.html" class="text-accent hover:text-primary transition-colors inline-flex items-center mb-8">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Blog List
+                </a>
+
+                <!-- Article Header -->
+                <header class="mb-8">
+                    <div class="flex items-center gap-4 text-sm text-secondary mb-4">
+                        <span>Feb 15, 2024</span>
+                        <span>&bull;</span>
+                        <span>7 min read</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-neutral-900 leading-tight">Mastering Tailwind CSS for Rapid UI Development</h1>
+                    <div class="flex items-center gap-6 text-secondary mt-6">
+                        <span title="Views"><i class="fas fa-eye mr-2"></i>2,148 views</span>
+                        <span title="Comments"><i class="fas fa-comments mr-2"></i>15 comments</span>
+                    </div>
+                </header>
+
+                <!-- Featured Image -->
+                <img src="https://placehold.co/1200x675/1E293B/E2E8F0?text=Tailwind+CSS+Code" alt="Tailwind CSS Code Example" class="rounded-lg shadow-lg w-full mb-12 bg-gray-200" loading="lazy">
+
+                <!-- Article Content -->
+                <article class="article-content text-neutral-800">
+                    <p>Tailwind CSS has revolutionized the way we approach front-end development. By providing low-level utility classes, it allows us to build completely custom designs without ever leaving our HTML. This article will explore the core concepts of Tailwind and demonstrate how to leverage its power to build modern, responsive interfaces with incredible speed.</p>
+                    
+                    <h2>1. Setting Up Your Project</h2>
+                    <p>Getting started with Tailwind is straightforward. You can either use the Play CDN for quick demos or set it up as a PostCSS plugin for full customization. For a production build, the PostCSS method is recommended as it allows you to purge unused styles and keep your final CSS bundle incredibly small.</p>
+
+                    <div class="code-block" id="code-1">
+                        <button class="copy-button" data-clipboard-target="#code-1-pre">Copy</button>
+                        <pre id="code-1-pre"><code class="language-bash"># Install Tailwind CSS
+npm install -D tailwindcss postcss autoprefixer
+
+# Create your config files
+npx tailwindcss init -p</code></pre>
+                    </div>
+
+                    <h2>2. The Utility-First Workflow</h2>
+                    <p>The core of Tailwind is its utility-first approach. Instead of writing custom CSS classes like <code>.card</code> or <code>.button</code>, you apply existing classes directly in your HTML. This might seem strange at first, but it has several key advantages: you aren't wasting energy inventing class names, your CSS stops growing, and making changes feels safer.</p>
+
+                    <div class="code-block" id="code-2">
+                        <button class="copy-button" data-clipboard-target="#code-2-pre">Copy</button>
+                        <pre id="code-2-pre"><code class="language-html">&lt;!-- Traditional Approach --&gt;
+&lt;div class="chat-notification"&gt;
+  &lt;div class="chat-notification-logo-wrapper"&gt;
+    &lt;img class="chat-notification-logo" src="/logo.svg" alt="ChitChat Logo"&gt;
+  &lt;/div&gt;
+  &lt;div class="chat-notification-content"&gt;
+    &lt;h4 class="chat-notification-title"&gt;ChitChat&lt;/h4&gt;
+    &lt;p class="chat-notification-message"&gt;You have a new message!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Tailwind Approach --&gt;
+&lt;div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4"&gt;
+  &lt;div class="shrink-0"&gt;
+    &lt;img class="h-12 w-12" src="/logo.svg" alt="ChitChat Logo"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div class="text-xl font-medium text-black"&gt;ChitChat&lt;/div&gt;
+    &lt;p class="text-slate-500"&gt;You have a new message!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <h2>3. Responsive Design</h2>
+                    <p>Responsive design is a first-class citizen in Tailwind. You can apply classes conditionally at different screen sizes by prefixing them with responsive modifiers like <code>md:</code> or <code>lg:</code>. This makes it incredibly intuitive to build complex responsive layouts without ever touching a media query.</p>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold font-serif">MyBrand</h3>
+                    <p class="mt-4 text-neutral-400">A personal portfolio showcasing my journey and skills in web development.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold font-serif">Quick Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-neutral-400 hover:text-white transition-colors">About Me</a></li>
+                        <li><a href="projects.html" class="text-neutral-400 hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="blog.html" class="text-neutral-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="text-neutral-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold font-serif">Connect</h3>
+                    <div class="flex mt-4 space-x-4">
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-neutral-800 pt-8 text-center text-neutral-500">
+                <p>&copy; 2024 MyBrand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a id="back-to-top" href="#" class="fixed bottom-8 right-8 bg-accent text-white w-12 h-12 rounded-full hidden justify-center items-center shadow-lg hover:bg-blue-500 transition-all">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="js/main.js"></script>
+    <script src="js/preloader.js"></script>
+    <script>
+        // Copy to clipboard functionality
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = document.querySelector(button.dataset.clipboardTarget);
+                if (target) {
+                    navigator.clipboard.writeText(target.innerText)
+                        .then(() => {
+                            button.innerText = 'Copied!';
+                            setTimeout(() => {
+                                button.innerText = 'Copy';
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy: ', err);
+                            alert('Failed to copy text.');
+                        });
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'flex';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html> 

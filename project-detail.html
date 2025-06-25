@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | Personal Portfolio</title>
+    <meta name="description" content="An in-depth look at the E-commerce Platform project, detailing the technology, process, and outcomes.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A', // Deep Blue
+                        accent: '#3B82F6',   // Bright Blue
+                        secondary: '#4B5563', // Medium Gray (for text)
+                        neutral: {
+                          100: '#F3F4F6',
+                          200: '#EEF2FF', // Light blue-gray for gradient
+                          800: '#1F2937',
+                          900: '#111827'
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    fontSize: {
+                        'h1': '2.5rem',
+                        'h2': '2rem',
+                        'h3': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    
+    <style type="text/tailwindcss">
+        @layer base {
+            html { @apply scroll-behavior-smooth; }
+            body { @apply bg-white text-neutral-900; }
+            h1, h2, h3, h4, h5, h6 { @apply font-serif font-bold; }
+            h1 { @apply text-h1; }
+            h2 { @apply text-h2; }
+            h3 { @apply text-h3; }
+        }
+        @layer components {
+            .btn { @apply font-sans font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2; }
+            .btn-primary { @apply bg-accent text-white hover:bg-blue-500 focus:ring-accent; }
+            .btn-secondary { @apply bg-white border border-gray-300 text-neutral-800 hover:bg-gray-100 focus:ring-accent; }
+
+            /* Timeline Style */
+            .timeline-item { @apply relative pl-8 pb-8 border-l border-gray-300; }
+            .timeline-dot { @apply absolute w-4 h-4 bg-accent rounded-full -left-2 ring-4 ring-white; }
+            .timeline-date { @apply text-sm font-semibold text-primary; }
+            .timeline-title { @apply text-lg font-bold text-neutral-900; }
+            .timeline-description { @apply text-secondary; }
+
+             /* Tag Style */
+            .tag { @apply inline-block bg-blue-100 text-primary text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Projects
+            </a>
+            
+            <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- Project Header -->
+        <section class="text-center py-20 bg-gradient-to-b from-neutral-200 to-white">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-center items-center gap-4">
+                   <span class="tag">Web Development</span>
+                   <span class="text-secondary">&bull;</span>
+                   <span class="text-secondary">2023</span>
+                </div>
+                <h1 class="font-bold text-neutral-900 mt-4">E-commerce Platform</h1>
+                <p class="text-lg text-secondary mt-4 max-w-3xl mx-auto">A full-featured e-commerce site with product listings, a shopping cart, and a secure checkout process, built with modern web technologies.</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="container mx-auto px-6 py-12">
+            <div class="lg:grid lg:grid-cols-3 lg:gap-12">
+                
+                <!-- Left Content Column -->
+                <div class="lg:col-span-2 space-y-16">
+                    <!-- Project Overview -->
+                    <section>
+                        <img src="https://placehold.co/1200x675/1E3A8A/FFFFFF?text=Project+Banner" alt="Project main image" class="rounded-lg shadow-lg mb-8" loading="lazy">
+                        <h2 class="font-bold mb-4">Project Overview</h2>
+                        <p class="text-secondary mb-4">This project was developed to create a robust and scalable e-commerce solution for a growing online business. The primary goal was to provide a seamless shopping experience for customers while offering powerful inventory management tools for the site administrators. We focused on performance, security, and a user-friendly interface to encourage conversions and repeat business.</p>
+                        <p class="text-secondary">The platform supports thousands of products across various categories, includes a powerful search function, and integrates with major payment gateways like Stripe.</p>
+                    </section>
+
+                    <!-- Key Features -->
+                    <section>
+                        <h2 class="font-bold mb-6">Key Features</h2>
+                        <ul class="list-disc list-inside space-y-2 text-secondary">
+                            <li><strong>Product Catalog:</strong> Dynamic product listings with filtering and sorting options.</li>
+                            <li><strong>Shopping Cart:</strong> Persistent cart functionality across user sessions.</li>
+                            <li><strong>Secure Checkout:</strong> Multi-step checkout process with Stripe integration for secure payments.</li>
+                            <li><strong>User Accounts:</strong> Customers can create accounts to view order history and manage their information.</li>
+                            <li><strong>Admin Dashboard:</strong> A comprehensive dashboard for managing products, orders, and customers.</li>
+                        </ul>
+                    </section>
+                    
+                    <!-- Development Process -->
+                    <section>
+                        <h2 class="font-bold mb-8">Development Process</h2>
+                        <div class="relative">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <p class="timeline-date">Phase 1</p>
+                                <h3 class="timeline-title">Planning & Discovery</h3>
+                                <p class="timeline-description">Defined project scope, user stories, and technical requirements. Created wireframes and mockups.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <p class="timeline-date">Phase 2</p>
+                                <h3 class="timeline-title">Development & Testing</h3>
+                                <p class="timeline-description">Built the front-end with React and back-end with Node.js. Conducted unit and integration testing.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <p class="timeline-date">Phase 3</p>
+                                <h3 class="timeline-title">Deployment & Launch</h3>
+                                <p class="timeline-description">Deployed the application to a cloud server, configured the database, and went live.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Screenshots -->
+                    <section>
+                         <h2 class="font-bold mb-6">Screenshots</h2>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Screenshot+1" alt="Project screenshot 1" class="rounded-lg shadow-md" loading="lazy">
+                            <img src="https://placehold.co/600x400/4B5563/FFFFFF?text=Screenshot+2" alt="Project screenshot 2" class="rounded-lg shadow-md" loading="lazy">
+                         </div>
+                    </section>
+                </div>
+
+                <!-- Right Sticky Info Card -->
+                <aside class="lg:col-span-1 lg:sticky lg:top-24 h-fit mt-12 lg:mt-0">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="font-bold border-b pb-2 mb-4">Project Info</h3>
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-gray-500">Tech Stack</h4>
+                                <p class="text-neutral-800">React, Node.js, Express, MongoDB, Tailwind CSS</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-500">My Role</h4>
+                                <p class="text-neutral-800">Full-Stack Developer</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-gray-500">Timeline</h4>
+                                <p class="text-neutral-800">3 Months</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex flex-col space-y-3">
+                            <a href="#" class="btn btn-primary w-full">Visit Website</a>
+                            <a href="#" class="btn btn-secondary w-full">View Source</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-neutral-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Get in Touch</h4>
+                    <p class="text-gray-400">Feel free to reach out via email or find me on social media.</p>
+                    <a href="mailto:hello@mybrand.com" class="block mt-2 text-accent hover:underline">hello@mybrand.com</a>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Me</a></li>
+                        <li class="mt-2"><a href="projects.html" class="text-gray-400 hover:text-white">Projects</a></li>
+                        <li class="mt-2"><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li class="mt-2"><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Social Media -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500">
+                <p>&copy; 2024 MyBrand. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/preloader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white/80', 'backdrop-blur-sm', 'shadow-md');
+                } else {
+                    navbar.classList.remove('bg-white/80', 'backdrop-blur-sm', 'shadow-md');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Personal Portfolio</title>
+    <meta name="description" content="Read my latest articles on web development, technology, and design.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A', // Deep Blue
+                        accent: '#3B82F6',   // Bright Blue
+                        secondary: '#4B5563', // Medium Gray (for text)
+                        neutral: {
+                          100: '#F3F4F6',
+                          200: '#E5E7EB', // Lighter gray for borders
+                          800: '#1F2937',
+                          900: '#111827'
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    
+    <style type="text/tailwindcss">
+        @layer base {
+            html { @apply scroll-behavior-smooth; }
+            body { @apply bg-white text-neutral-900; }
+            h1, h2, h3, h4, h5, h6 { @apply font-serif font-bold; }
+        }
+        @layer components {
+            /* Button */
+            .btn { @apply font-sans font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2; }
+            .btn-primary { @apply bg-accent text-white hover:bg-blue-500 focus:ring-accent; }
+
+            /* Blog Card */
+            .blog-card {
+                @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out md:flex;
+            }
+            .blog-card:hover {
+                @apply shadow-xl transform -translate-y-1;
+            }
+            .blog-card-image {
+                @apply w-full md:w-1/3 h-48 md:h-auto object-cover;
+            }
+             .blog-card-content {
+                @apply p-6 flex flex-col justify-between;
+            }
+            
+            /* Filter Tag */
+            .filter-tag {
+                @apply px-4 py-2 rounded-full text-sm font-semibold cursor-pointer transition-colors duration-200;
+            }
+            .filter-tag.active {
+                @apply bg-accent text-white;
+            }
+            .filter-tag:not(.active) {
+                @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+            }
+
+            /* Pagination */
+            .pagination-item {
+                @apply w-10 h-10 flex items-center justify-center rounded-full font-semibold transition-colors duration-200;
+            }
+            .pagination-item.active {
+                @apply bg-accent text-white;
+            }
+            .pagination-item:not(.active) {
+                @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold font-serif text-primary">MyBrand</a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-accent font-bold">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+
+            <!-- Mobile Nav Button -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
+            <nav class="flex flex-col items-center space-y-4 py-4">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-accent font-bold">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <div class="container mx-auto px-6">
+            
+            <!-- Page Title -->
+            <section class="text-center py-16">
+                <h1 class="font-bold text-neutral-900">From My Journal</h1>
+                <p class="text-lg text-secondary mt-4 max-w-2xl mx-auto">Thoughts on technology, development, and design. Follow my journey and maybe learn something new along the way.</p>
+            </section>
+
+            <!-- Search and Filter -->
+            <section class="mb-12">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                    <!-- Search Box -->
+                    <div class="relative w-full md:flex-1">
+                        <input type="text" placeholder="Search articles..." class="w-full pl-10 pr-4 py-2 border border-neutral-200 rounded-md focus:ring-accent focus:border-accent">
+                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <!-- Filter Tags -->
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center gap-2 overflow-x-auto pb-2">
+                           <button class="filter-tag active" data-filter="all">All</button>
+                           <button class="filter-tag" data-filter="frontend">Frontend</button>
+                           <button class="filter-tag" data-filter="backend">Backend</button>
+                           <button class="filter-tag" data-filter="uiux">UI/UX</button>
+                           <button class="filter-tag" data-filter="devops">DevOps</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Post List -->
+            <section class="space-y-8">
+                <!-- Blog Card 1 -->
+                <article class="blog-card">
+                    <img src="https://placehold.co/600x400/111827/FFFFFF?text=Code+Snippet" alt="Code snippet for a blog post" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div>
+                            <div class="flex items-center gap-4 text-sm text-secondary mb-2">
+                                <span>Frontend Development</span>
+                                <span>&bull;</span>
+                                <span>Feb 15, 2024</span>
+                            </div>
+                            <h2 class="text-2xl font-bold text-neutral-900 hover:text-primary transition-colors cursor-pointer">Mastering Tailwind CSS for Rapid UI Development</h2>
+                            <p class="text-secondary mt-2">An in-depth guide to leveraging Tailwind CSS to build beautiful, custom designs without leaving your HTML.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="flex items-center gap-4 text-sm text-secondary">
+                                <span title="Views"><i class="fas fa-eye mr-1"></i>2.1k</span>
+                                <span title="Comments"><i class="fas fa-comments mr-1"></i>15</span>
+                            </div>
+                            <a href="#" class="font-bold text-accent hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- Blog Card 2 -->
+                 <article class="blog-card">
+                    <img src="https://placehold.co/600x400/1E3A8A/FFFFFF?text=Code+Snippet" alt="Code snippet for a blog post" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div>
+                            <div class="flex items-center gap-4 text-sm text-secondary mb-2">
+                                <span>Backend Development</span>
+                                <span>&bull;</span>
+                                <span>Jan 28, 2024</span>
+                            </div>
+                            <h2 class="text-2xl font-bold text-neutral-900 hover:text-primary transition-colors cursor-pointer">Building a REST API with Node.js and Express</h2>
+                            <p class="text-secondary mt-2">A step-by-step tutorial on creating a secure and scalable RESTful API from scratch using the powerful Node.js runtime.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="flex items-center gap-4 text-sm text-secondary">
+                                <span title="Views"><i class="fas fa-eye mr-1"></i>1.8k</span>
+                                <span title="Comments"><i class="fas fa-comments mr-1"></i>9</span>
+                            </div>
+                            <a href="#" class="font-bold text-accent hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+                 <!-- Blog Card 3 -->
+                 <article class="blog-card">
+                    <img src="https://placehold.co/600x400/4B5563/FFFFFF?text=Code+Snippet" alt="Code snippet for a blog post" class="blog-card-image" loading="lazy">
+                    <div class="blog-card-content">
+                        <div>
+                            <div class="flex items-center gap-4 text-sm text-secondary mb-2">
+                                <span>UI/UX Design</span>
+                                <span>&bull;</span>
+                                <span>Jan 10, 2024</span>
+                            </div>
+                            <h2 class="text-2xl font-bold text-neutral-900 hover:text-primary transition-colors cursor-pointer">The Principles of Clean and Modern UI Design</h2>
+                            <p class="text-secondary mt-2">Exploring core design principles like whitespace, typography, and color theory to create intuitive and engaging user interfaces.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="flex items-center gap-4 text-sm text-secondary">
+                                <span title="Views"><i class="fas fa-eye mr-1"></i>3.2k</span>
+                                <span title="Comments"><i class="fas fa-comments mr-1"></i>24</span>
+                            </div>
+                            <a href="#" class="font-bold text-accent hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            
+            <!-- Pagination -->
+            <section class="flex justify-center py-16">
+                <nav class="flex items-center gap-2">
+                    <a href="#" class="pagination-item"><i class="fas fa-chevron-left"></i></a>
+                    <a href="#" class="pagination-item active">1</a>
+                    <a href="#" class="pagination-item">2</a>
+                    <a href="#" class="pagination-item">3</a>
+                    <span class="pagination-item">...</span>
+                    <a href="#" class="pagination-item">8</a>
+                    <a href="#" class="pagination-item"><i class="fas fa-chevron-right"></i></a>
+                </nav>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Get in Touch</h4>
+                    <p class="text-gray-400">Feel free to reach out via email or find me on social media.</p>
+                    <a href="mailto:hello@mybrand.com" class="block mt-2 text-accent hover:underline">hello@mybrand.com</a>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Me</a></li>
+                        <li class="mt-2"><a href="projects.html" class="text-gray-400 hover:text-white">Projects</a></li>
+                        <li class="mt-2"><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li class="mt-2"><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Social Media -->
+                <div>
+                    <h4 class="font-bold font-serif mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500">
+                <p>&copy; 2024 MyBrand. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white/80', 'backdrop-blur-sm', 'shadow-md');
+                } else {
+                    navbar.classList.remove('bg-white/80', 'backdrop-blur-sm', 'shadow-md');
+                }
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/preloader.js"></script>
+</body>
+</html>

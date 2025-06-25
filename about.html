@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | My Personal Portfolio</title>
+    <meta name="description" content="Learn more about my journey, skills, and passion for web development.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A', // Deep Blue
+                        accent: '#F97316',   // Bright Orange
+                        secondary: '#4B5563', // Medium Gray
+                        neutral: {
+                          100: '#F3F4F6',
+                          800: '#1F2937',
+                          900: '#111827'
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    
+    <style type="text/tailwindcss">
+        @layer base {
+            html {
+                @apply scroll-behavior-smooth;
+            }
+            body {
+                @apply bg-white text-neutral-900;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                @apply font-serif font-bold;
+            }
+            h1 { @apply text-h1; }
+            h2 { @apply text-h2; }
+            h3 { @apply text-h3; }
+            p {
+                @apply leading-relaxed; /* 1.6 line height approx */
+            }
+        }
+        /* Re-using component styles from index.html for consistency */
+        @layer components {
+            .btn { @apply font-sans font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2; }
+            .btn-primary { @apply bg-accent text-white hover:bg-blue-500 focus:ring-accent; }
+            .btn-secondary { @apply bg-transparent border border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary; }
+            .btn-text { @apply bg-transparent text-neutral-900 hover:bg-neutral-100 focus:ring-accent; }
+            .btn-lg { @apply py-3 px-6 text-lg; }
+            .btn-md { @apply py-2 px-4 text-base; }
+            .btn-sm { @apply py-1 px-3 text-sm; }
+            .btn:disabled { @apply bg-gray-300 text-gray-500 cursor-not-allowed; }
+
+            .card { @apply bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 ease-in-out; }
+            .card-image { @apply w-full h-48 object-cover; }
+            .card-content { @apply p-6; }
+            .card-title { @apply text-xl font-bold text-neutral-900 mb-2; }
+            .card-description { @apply text-secondary font-sans; }
+
+            .tag { @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-sans font-semibold; }
+            .tag-blue { @apply bg-blue-100 text-blue-800; }
+            .tag-pink { @apply bg-pink-100 text-pink-800; }
+            .tag-gray { @apply bg-gray-200 text-gray-800; }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold font-serif text-primary">MyBrand</a>
+            
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-orange-500 font-bold">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-neutral-900 hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+
+            <button id="mobile-menu-button" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
+            <nav class="flex flex-col items-center space-y-4 py-4">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-orange-500 font-bold">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-neutral-900 hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-24 md:pt-32 pb-16 md:pb-24 bg-accent text-white">
+            <div class="container mx-auto px-6 text-center">
+                <img src="https://placehold.co/150x150/FFFFFF/1E3A8A?text=Me" alt="My Portrait" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto ring-4 ring-white shadow-lg mb-6 bg-gray-200" loading="lazy">
+                <h1 class="text-4xl md:text-5xl font-bold font-serif">About Me</h1>
+                <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto">I'm a passionate developer with a love for creating beautiful and functional web experiences.</p>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl font-bold font-serif text-center mb-12">My Journey</h2>
+                <div class="prose lg:prose-xl max-w-none mx-auto text-lg text-neutral-800">
+                    <p>My programming journey began with a curiosity for how websites worked. This led me down the rabbit hole of HTML, CSS, and JavaScript, and I was immediately hooked. I spent countless hours building small projects, learning from online tutorials, and reading documentation to absorb as much as I could.</p>
+                    <p>After mastering the fundamentals, I dove into modern frameworks like React and Vue.js, which opened up a new world of possibilities for creating dynamic and interactive applications. I'm driven by the challenge of solving complex problems and the satisfaction of seeing my code come to life.</p>
+                    <p>Today, I specialize in full-stack development, comfortable with both crafting pixel-perfect user interfaces and architecting robust backend systems. I am constantly learning and exploring new technologies to stay at the forefront of the ever-evolving world of web development.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold font-serif">MyBrand</h3>
+                    <p class="mt-4 text-neutral-400">A personal portfolio showcasing my journey and skills in web development.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold font-serif">Quick Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-neutral-400 hover:text-white transition-colors">About Me</a></li>
+                        <li><a href="projects.html" class="text-neutral-400 hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="blog.html" class="text-neutral-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="text-neutral-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold font-serif">Connect</h3>
+                    <div class="flex mt-4 space-x-4">
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-neutral-800 pt-8 text-center text-neutral-500">
+                <p>&copy; 2024 MyBrand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/preloader.js"></script>
+</body>
+</html>

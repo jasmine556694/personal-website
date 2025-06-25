@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me | My Personal Portfolio</title>
+    <meta name="description" content="Get in touch with me. Send a message through the contact form or find my contact details.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A', // Deep Blue
+                        accent: '#3B82F6',   // Bright Blue
+                        secondary: '#4B5563', // Medium Gray
+                        'base-100': '#FFFFFF',
+                        'base-200': '#F9FAFB',
+                        neutral: {
+                          100: '#F3F4F6',
+                          800: '#1F2937',
+                          900: '#111827'
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    
+    <style type="text/tailwindcss">
+        @layer base {
+            html { @apply scroll-behavior-smooth; }
+            body { @apply bg-base-200 text-neutral-800; }
+            h1, h2, h3, h4 { @apply font-serif font-bold; }
+        }
+        @layer components {
+            .btn { @apply font-sans font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2; }
+            .btn-primary { @apply bg-accent text-white hover:bg-blue-500 focus:ring-accent; }
+            .form-input { @apply w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow; }
+            .card { @apply bg-white p-8 rounded-lg shadow-lg; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold font-serif text-primary">MyBrand</a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-neutral-900 hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+
+            <!-- Mobile Nav Button -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
+            <nav class="flex flex-col items-center space-y-4 py-4">
+                <a href="index.html" class="text-neutral-900 hover:text-accent transition-colors">Home</a>
+                <a href="about.html" class="text-neutral-900 hover:text-accent transition-colors">About</a>
+                <a href="projects.html" class="text-neutral-900 hover:text-accent transition-colors">Projects</a>
+                <a href="blog.html" class="text-neutral-900 hover:text-accent transition-colors">Blog</a>
+                <a href="contact.html" class="btn btn-primary btn-md">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                
+                <!-- Page Header -->
+                <div class="text-center mb-12 md:mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold font-serif text-neutral-900">Contact Me</h1>
+                    <p class="mt-4 text-lg md:text-xl text-secondary max-w-2xl mx-auto">I'm here to help. Whether you have a question, a project proposal, or just want to say hello, feel free to reach out.</p>
+                </div>
+
+                <!-- Contact Grid -->
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    <!-- Left: Contact Information -->
+                    <div class="card">
+                        <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+                        <ul class="space-y-6 text-lg">
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope text-primary w-6 text-center mr-4 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-neutral-900">Email</h3>
+                                    <a href="mailto:contact@example.com" class="text-secondary hover:text-accent">contact@example.com</a>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-phone text-primary w-6 text-center mr-4 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-neutral-900">Phone</h3>
+                                    <span class="text-secondary">+1 (234) 567-890</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-primary w-6 text-center mr-4 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-neutral-900">Address</h3>
+                                    <span class="text-secondary">Beijing, China</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right: Contact Form -->
+                    <div class="card">
+                        <h2 class="text-2xl font-bold mb-6">Send a Message</h2>
+                        <form id="contact-form" novalidate>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Your name" class="form-input" required>
+                                    <p class="text-red-500 text-sm mt-1 hidden error-message">Name is required.</p>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="Your email" class="form-input" required>
+                                    <p class="text-red-500 text-sm mt-1 hidden error-message">Please enter a valid email.</p>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Message subject" class="form-input" required>
+                                <p class="text-red-500 text-sm mt-1 hidden error-message">Subject is required.</p>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Your message" class="form-input" required></textarea>
+                                <p class="text-red-500 text-sm mt-1 hidden error-message">Message cannot be empty.</p>
+                            </div>
+                            <div class="mb-6 flex items-center">
+                                <input id="privacy" name="privacy" type="checkbox" class="h-4 w-4 text-primary focus:ring-accent border-gray-300 rounded" required>
+                                <label for="privacy" class="ml-2 block text-sm text-gray-900">I agree to the website's privacy policy.</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full text-lg">Send Message</button>
+                            <p id="form-feedback" class="text-center mt-4"></p>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold font-serif text-neutral-900">Frequently Asked Questions</h2>
+                    <p class="mt-4 text-lg text-secondary max-w-2xl mx-auto">Here are some of the most common questions I get. If you don't find your answer here, feel free to send me a message.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="faq-item">
+                        <h3 class="text-xl font-bold mb-2">What services do you offer?</h3>
+                        <p class="text-secondary">I specialize in front-end development, focusing on creating responsive, high-performance websites using modern technologies like React, Vue, and Tailwind CSS. I also offer full-stack development with Node.js.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="text-xl font-bold mb-2">How can I start a project with you?</h3>
+                        <p class="text-secondary">The best way to start is by sending me a message through the contact form with a brief description of your project. I'll get back to you within a couple of business days to schedule a consultation.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="text-xl font-bold mb-2">What is your typical project timeline?</h3>
+                        <p class="text-secondary">Project timelines can vary greatly depending on the scope and complexity. A simple landing page might take 1-2 weeks, while a full-featured web application could take several months. We'll define a clear timeline after our initial consultation.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="text-xl font-bold mb-2">Do you work with international clients?</h3>
+                        <p class="text-secondary">Absolutely! I work with clients from all over the world. We can easily coordinate through video calls and project management tools to ensure smooth communication regardless of time zones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold font-serif">MyBrand</h3>
+                    <p class="mt-4 text-neutral-400">A personal portfolio showcasing my journey and skills in web development.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold font-serif">Quick Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="about.html" class="text-neutral-400 hover:text-white transition-colors">About Me</a></li>
+                        <li><a href="projects.html" class="text-neutral-400 hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="blog.html" class="text-neutral-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="text-neutral-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold font-serif">Connect</h3>
+                    <div class="flex mt-4 space-x-4">
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors text-2xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-neutral-800 pt-8 text-center text-neutral-500">
+                <p>&copy; 2024 MyBrand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/preloader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contact-form');
+            const feedbackEl = document.getElementById('form-feedback');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    let isValid = true;
+                    
+                    // Clear previous errors
+                    this.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
+                    
+                    // Fields to validate
+                    const requiredFields = ['name', 'email', 'subject', 'message'];
+                    
+                    requiredFields.forEach(fieldId => {
+                        const input = this.querySelector(`#${fieldId}`);
+                        const errorEl = input.nextElementSibling;
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            errorEl.classList.remove('hidden');
+                        }
+                    });
+
+                    // Email validation
+                    const emailInput = this.querySelector('#email');
+                    const emailError = emailInput.nextElementSibling;
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (emailInput.value.trim() && !emailPattern.test(emailInput.value)) {
+                        isValid = false;
+                        emailError.textContent = 'Please enter a valid email.';
+                        emailError.classList.remove('hidden');
+                    }
+                    
+                    // Checkbox validation
+                    const privacyCheckbox = this.querySelector('#privacy');
+                    if (!privacyCheckbox.checked) {
+                        isValid = false;
+                        feedbackEl.textContent = 'You must agree to the privacy policy.';
+                        feedbackEl.className = 'text-center mt-4 text-red-500';
+                    }
+
+                    if (isValid) {
+                        feedbackEl.textContent = 'Sending...';
+                        feedbackEl.className = 'text-center mt-4 text-blue-600';
+
+                        // Simulate form submission
+                        setTimeout(() => {
+                            feedbackEl.textContent = 'Message sent successfully! Thank you.';
+                            feedbackEl.className = 'text-center mt-4 text-green-600';
+                            this.reset();
+                        }, 1500);
+                    } else {
+                         if(privacyCheckbox.checked){
+                             feedbackEl.textContent = '';
+                         }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
